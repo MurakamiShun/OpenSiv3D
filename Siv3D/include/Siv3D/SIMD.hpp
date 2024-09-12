@@ -12,8 +12,6 @@
 # pragma once
 # include "Platform.hpp"
 
-# define SIMDE_ENABLE_NATIVE_ALIASES
-
 # if !SIV3D_INTRINSIC(SSE)
 
 # include <ThirdParty/simde/x86/sse.h>

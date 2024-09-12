@@ -1398,7 +1398,7 @@ set(CPACK_PACKAGE_HOMEPAGE_URL ${CMAKE_PROJECT_HOMEPAGE_URL})
 set(CPACK_PACKAGE_NAME "libSiv3D-dev")
 set(CPACK_PACKAGE_FILE_LICENSE ../LICENSE)
 set(CPACK_DEBIAN_PACKAGE_DEPENDS
-  "cmake, libasound2-dev, libavcodec-dev, libavformat-dev, libavutil-dev, libboost-dev, libcurl4-openssl-dev, libgtk-3-dev,
+  "cmake, libasound2-dev, libavcodec-dev, libavformat-dev, libavutil-dev, libboost1.74-dev, libcurl4-openssl-dev, libgtk-3-dev,
   libgif-dev, libglu1-mesa-dev, libharfbuzz-dev, libmpg123-dev, libopencv-dev, libopus-dev, libopusfile-dev,
   libsoundtouch-dev, libswresample-dev, libtiff-dev, libturbojpeg0-dev, libvorbis-dev, libwebp-dev, libxft-dev, uuid-dev, xorg-dev"
 )

@@ -27,12 +27,13 @@ extern "C"
 	GifQuantizeBuffer(unsigned int Width,
 		unsigned int Height,
 		int* ColorMapSize,
-		GifByteType* RedInput,
-		GifByteType* GreenInput,
-		GifByteType* BlueInput,
+		const GifByteType* RedInput,
+		const GifByteType* GreenInput,
+		const GifByteType* BlueInput,
 		GifByteType* OutputBuffer,
 		GifColorType* OutputColorMap);
 }
+
 
 namespace s3d
 {
