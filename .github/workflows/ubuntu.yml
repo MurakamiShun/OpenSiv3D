@@ -39,11 +39,10 @@ jobs:
         cpack
 
     - name: save deb package
-      working-directory: Linux/build
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: libSiv3D-dev-0.6.15-${{ runner.os }}.deb
-        path: ./libSiv3D-dev-0.6.15-Linux.deb
+        path: ./Linux/build/libSiv3D-dev-0.6.15-Linux.deb
 
     - name: Install Siv3D
       working-directory: Linux
