@@ -16,10 +16,6 @@
 
 # if SIV3D_PLATFORM(WINDOWS) | SIV3D_PLATFORM(MACOS) | SIV3D_PLATFORM(WEB)
 #	include <ThirdParty-prebuilt/libgif/gif_lib.h>
-# else
-#	include <gif_lib.h>
-# endif
-
 extern "C"
 {
 	// libgif/libutil
@@ -27,12 +23,15 @@ extern "C"
 	GifQuantizeBuffer(unsigned int Width,
 		unsigned int Height,
 		int* ColorMapSize,
-		const GifByteType* RedInput,
-		const GifByteType* GreenInput,
-		const GifByteType* BlueInput,
+		GifByteType* RedInput,
+		GifByteType* GreenInput,
+		GifByteType* BlueInput,
 		GifByteType* OutputBuffer,
 		GifColorType* OutputColorMap);
 }
+# else
+#	include <gif_lib.h>
+# endif
 
 
 namespace s3d
