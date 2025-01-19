@@ -11,7 +11,7 @@
 
 #include "infoware/detail/cpuid.hpp"
 #include <cstdint>
-#if  !define(_WIN32) && define(__x86_64)
+#if  !defined(_WIN32) && defined(__x86_64)
 #include <cpuid.h>
 
 
