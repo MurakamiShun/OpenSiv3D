@@ -10,7 +10,7 @@
 // If not, see <http://creativecommons.org/publicdomain/zero/1.0/>
 
 
-#ifndef _WIN32
+#if  !define(_WIN32) && define(__x86_64)
 
 
 #include "infoware/detail/cpuid.hpp"
@@ -28,5 +28,13 @@ std::uint64_t iware::detail::xgetbv(std::uint32_t index) {
 	return ((uint64_t)edx << 32) | eax;
 }
 
+#else
+
+void iware::detail::cpuid(std::int32_t (&out)[4], std::int32_t x) {
+}
+
+std::uint64_t iware::detail::xgetbv(std::uint32_t index) {
+	return 0;
+}
 
 #endif
