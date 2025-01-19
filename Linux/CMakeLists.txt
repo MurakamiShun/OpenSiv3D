@@ -1319,6 +1319,7 @@ elseif(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "aarch64")
   set(SIV3D_INTERNAL_SOURCES_ARCH
     ../Siv3D/src/ThirdParty/angelscript/as_callfunc_arm.cpp
     ../Siv3D/src/ThirdParty/angelscript/as_callfunc_arm64.cpp
+    ../Siv3D/src/ThirdParty/angelscript/as_callfunc_arm64_gcc.S
   )
 else()
   set(SIV3D_INTERNAL_SOURCES_ARCH )
