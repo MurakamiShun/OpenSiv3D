@@ -9,13 +9,10 @@
 // You should have received a copy of the CC0 Public Domain Dedication along with this software.
 // If not, see <http://creativecommons.org/publicdomain/zero/1.0/>
 
-
-#if  !define(_WIN32) && define(__x86_64)
-
-
 #include "infoware/detail/cpuid.hpp"
-#include <cpuid.h>
 #include <cstdint>
+#if  !define(_WIN32) && define(__x86_64)
+#include <cpuid.h>
 
 
 void iware::detail::cpuid(std::int32_t (&out)[4], std::int32_t x) {
