@@ -12,6 +12,7 @@
 # include <cstring>
 # include <Siv3D/CPUInfo.hpp>
 # include <Siv3D/Unicode.hpp>
+#if defined(_WIN32) || defined(__x86_64)
 # include <ThirdParty/cpu_features/cpuinfo_x86.h>
 
 namespace s3d
@@ -47,3 +48,27 @@ namespace s3d
 		return g_CPUInfo;
 	}
 }
+#else
+namespace s3d
+{
+	namespace detail
+	{
+		[[nodiscard]]
+		static CPUInfo InitCPUInfo() noexcept
+		{
+			CPUInfo result;
+			return result;
+		}
+	}
+
+	const CPUInfo g_CPUInfo = detail::InitCPUInfo();
+
+	const CPUInfo& GetCPUInfo() noexcept
+	{
+		return g_CPUInfo;
+	}
+}
+
+
+
+#endif

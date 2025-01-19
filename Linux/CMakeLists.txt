@@ -785,16 +785,10 @@ set(SIV3D_INTERNAL_SOURCES
   ../Siv3D/src/ThirdParty/angelscript/as_builder.cpp
   ../Siv3D/src/ThirdParty/angelscript/as_bytecode.cpp
   ../Siv3D/src/ThirdParty/angelscript/as_callfunc.cpp
-  ../Siv3D/src/ThirdParty/angelscript/as_callfunc_arm.cpp
-  ../Siv3D/src/ThirdParty/angelscript/as_callfunc_arm64.cpp
   ../Siv3D/src/ThirdParty/angelscript/as_callfunc_mips.cpp
   ../Siv3D/src/ThirdParty/angelscript/as_callfunc_ppc.cpp
   ../Siv3D/src/ThirdParty/angelscript/as_callfunc_ppc_64.cpp
   ../Siv3D/src/ThirdParty/angelscript/as_callfunc_sh4.cpp
-  ../Siv3D/src/ThirdParty/angelscript/as_callfunc_x64_gcc.cpp
-  ../Siv3D/src/ThirdParty/angelscript/as_callfunc_x64_mingw.cpp
-  ../Siv3D/src/ThirdParty/angelscript/as_callfunc_x64_msvc.cpp
-  ../Siv3D/src/ThirdParty/angelscript/as_callfunc_x86.cpp
   ../Siv3D/src/ThirdParty/angelscript/as_callfunc_xenon.cpp
   ../Siv3D/src/ThirdParty/angelscript/as_compiler.cpp
   ../Siv3D/src/ThirdParty/angelscript/as_configgroup.cpp
@@ -866,11 +860,6 @@ set(SIV3D_INTERNAL_SOURCES
   ../Siv3D/src/ThirdParty/box2d/dynamics/b2_world.cpp
   ../Siv3D/src/ThirdParty/box2d/dynamics/b2_world_callbacks.cpp
   ../Siv3D/src/ThirdParty/box2d/rope/b2_rope.cpp
-
-  ../Siv3D/src/ThirdParty/cpu_features/cpuinfo_x86.c
-  ../Siv3D/src/ThirdParty/cpu_features/filesystem.c
-  ../Siv3D/src/ThirdParty/cpu_features/stack_line_reader.c
-  ../Siv3D/src/ThirdParty/cpu_features/string_view.c
 
   ../Siv3D/src/ThirdParty/DirectXMath/DirectXCollision.cpp
 
@@ -1313,6 +1302,28 @@ set(SIV3D_INTERNAL_SOURCES
   ../Siv3D/src/ThirdParty/zstd/decompress/huf_decompress_amd64.S
 )
 
+if(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "x86_64")
+  set(SIV3D_INTERNAL_SOURCES_ARCH
+    ../Siv3D/src/ThirdParty/cpu_features/cpuinfo_x86.c
+    ../Siv3D/src/ThirdParty/cpu_features/filesystem.c
+    ../Siv3D/src/ThirdParty/cpu_features/stack_line_reader.c
+    ../Siv3D/src/ThirdParty/cpu_features/string_view.c
+
+    
+    ../Siv3D/src/ThirdParty/angelscript/as_callfunc_x64_gcc.cpp
+    ../Siv3D/src/ThirdParty/angelscript/as_callfunc_x64_mingw.cpp
+    ../Siv3D/src/ThirdParty/angelscript/as_callfunc_x64_msvc.cpp
+    ../Siv3D/src/ThirdParty/angelscript/as_callfunc_x86.cpp
+  )
+elseif(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "aarch64")
+  set(SIV3D_INTERNAL_SOURCES_ARCH
+    ../Siv3D/src/ThirdParty/angelscript/as_callfunc_arm.cpp
+    ../Siv3D/src/ThirdParty/angelscript/as_callfunc_arm64.cpp
+  )
+else()
+  set(SIV3D_INTERNAL_SOURCES_ARCH )
+endif()
+
 set(SIV3D_INTERNAL_INCLUDE_DIRS
   ../Siv3D/include
   ../Siv3D/include/ThirdParty
@@ -1331,7 +1342,7 @@ set(SIV3D_INTERNAL_INCLUDE_DIRS
 )
 
 
-add_library(Siv3D STATIC ${SIV3D_INTERNAL_SOURCES})
+add_library(Siv3D STATIC ${SIV3D_INTERNAL_SOURCES} ${SIV3D_INTERNAL_SOURCES_ARCH})
 target_link_libraries(Siv3D INTERFACE
   ${CMAKE_THREAD_LIBS_INIT}
   ${GIF_LIBRARIES}
